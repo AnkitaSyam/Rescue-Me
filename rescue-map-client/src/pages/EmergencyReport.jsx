@@ -3,6 +3,8 @@ import { AlertCircle, Users, Send, CheckCircle2, Camera, Mic, MapPin, Loader, Za
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+
 const EmergencyReport = ({ onComplete }) => {
   const [step, setStep] = useState(1);
   const [severity, setSeverity] = useState('Safe');
@@ -35,7 +37,7 @@ const EmergencyReport = ({ onComplete }) => {
     try {
       const finalLocation = location || { lat: 40.7128 + Math.random()*0.1, lng: -74.006 + Math.random()*0.1 };
       
-      await axios.post('/api/report', {
+      await axios.post(`${API_BASE_URL}/api/victims`, {
         name: name || 'Anonymous Victim',
         phone: phone || 'N/A',
         severity,

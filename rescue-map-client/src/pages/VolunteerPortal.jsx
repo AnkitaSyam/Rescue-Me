@@ -5,7 +5,8 @@ import { Users, Shield, MapPin, CheckCircle, ArrowRight, Heart, Award, Zap,
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
 
-const API = 'http://localhost:5000/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+const API = `${API_BASE_URL}/api`;
 
 const SKILLS = [
   { id: 'First Aid',     label: 'First Aid',     emoji: '🩹' },

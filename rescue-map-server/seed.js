@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
-const Victim = require('./models/Victim');
-const Volunteer = require('./models/Volunteer');
+const dotenv = require('dotenv');
 
-const MONGO_URI = 'mongodb://localhost:27017/rescuemap';
+dotenv.config();
+
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/rescuemap';
 
 const dummyVictims = [];
 

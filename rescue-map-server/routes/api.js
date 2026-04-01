@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Victim = require('../models/Victim');
 const Volunteer = require('../models/Volunteer');
+const { analyzeDistress } = require('../services/aiService');
 
 // Calculate Priority Score Utility
 const calculatePriority = (severity, people, timeSince) => {
@@ -28,10 +29,22 @@ router.post('/report', async (req, res) => {
   const { name, phone, location, severity, peopleCount, description, media } = req.body;
   
   try {
-    const priorityScore = calculatePriority(severity, peopleCount, new Date());
+    let priorityScore = calculatePriority(severity, peopleCount, new Date());
+    let aiReasoning = '';
+
+    // Integrate Gemini AI Triage
+    const aiResult = await analyzeDistress(description);
+    if (aiResult) {
+      priorityScore = Math.max(priorityScore, aiResult.priorityScore);
+      aiReasoning = aiResult.reasoning;
+      // We can also override severity if AI finds it more critical
+      console.log(`AI Triage: Priority ${aiResult.priorityScore}, Severity: ${aiResult.verifiedSeverity}`);
+    }
     
     const newVictim = new Victim({
-      name, phone, location, severity, peopleCount, description, media, priorityScore
+      name, phone, location, severity, peopleCount, description, media, 
+      priorityScore: Number(priorityScore),
+      aiReasoning // Optional: update model if you want to store it
     });
     
     await newVictim.save();

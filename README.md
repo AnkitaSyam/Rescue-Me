@@ -1,51 +1,74 @@
-# Rescue-Me | Disaster Response & Coordination Platform
+# RescueMap 🚀
+
+**Team Name: F1**  
+**Team Members:**  
+- Arpitha Bhandary (S6 AI)  
+- Ankita Syam (S6 CSE)
 
 ## Problem Statement
-During natural disasters and emergencies, coordination between victims, responders, and volunteers is fragmented and inefficient. Critical information about survivors' locations, medical needs, and severity levels is scattered across multiple channels, leading to:
-- **Delayed response times** due to poor information flow
-- **Inefficient resource allocation** without priority-based triage
-- **Missed rescue opportunities** for isolated victims
-- **Volunteer engagement barriers** - locals don't know where help is needed
-
-**RescueMap solves this by creating a unified, real-time platform that connects victims, coordinators, and volunteers instantly.**
+In disaster zones, traditional emergency response is often crippled by a lack of real-time visibility. Victims cannot easily communicate their exact GPS location or the severity of their situation, and rescue coordinators struggle to prioritize hundreds of incoming distress calls manually. This delay in "Triage" (prioritizing the most critical cases) leads to lost lives when every second counts.
 
 ## Project Description
-**RescueMap** is a full-stack emergency response system designed to prioritize life-saving efforts during disasters through intelligent triage and real-time coordination.
-
-### How it works:
-1.  **Victims**: Use the Emergency tab to one-tap SOS with GPS location, severity level selection, and situation description.
-2.  **Coordinators**: Access a real-time dashboard with a map view, color-coded victim markers, and priority-sorted rescue lists.
-3.  **Volunteers**: Receive localized alerts for nearby emergencies and join rescue efforts with skill-based deployment.
-4.  **Backend Intelligence**: An AI-powered priority scoring algorithm ranks emergencies based on severity, population affected, and time elapsed.
+**RescueMap** is a high-tech disaster response and coordination platform designed for real-time SOS management.  
+- **Victim Portal**: Provides a seamless, one-tap SOS reporting system that captures GPS, severity, and situation details.
+- **Coordinator Dashboard**: A Command & Control center that visualizes distress calls on an interactive map.
+- **Smart Triage**: Uses AI to automatically prioritize victims based on the urgency of their descriptions.
+- **Volunteer Portal**: Connects active volunteers with nearby rescue tasks, providing one-click navigation and contact.
 
 ## Google AI Usage
 ### Tools / Models Used
-- **Google Gemini API**: Natural language processing for emergency description analysis.
-- **Vertex AI**: Predictive analytics for resource allocation optimization.
-- **Google Cloud AutoML**: Image classification for damage assessment from photos.
+- **Gemini 1.5 Flash**: Chosen for its high speed and accuracy in text classification.
 
 ### How Google AI Was Used
-1.  **Priority Scoring Enhancement**: Uses Gemini to analyze emergency descriptions (e.g., "water rising fast", "medical emergency") and auto-adjust severity scores.
-2.  **Predictive Resource Allocation**: Vertex AI predicts optimal team deployment based on historical disaster data and live traffic/terrain conditions.
-3.  **Damage Assessment**: Users can upload photos; AutoML classifies damage severity (minor, moderate, critical) to prioritize the most devastated areas.
-4.  **Natural Language Understanding**: Parses location descriptions and medical terms from victim reports for better coordinator context.
+Google Gemini is integrated as a **Smart Triage Engine**. When a victim submits a distress report, the description is sent to Gemini to analyze the level of danger. The AI:
+1.  **Analyzes Distress Descriptions**: Understands complex language (e.g., "water is rising" vs "need food").
+2.  **Generates Priority Scores**: Assigns a score (1-100) based on the immediate threat to life.
+3.  **Verifies Severity**: Validates human-selected severity to ensure coordinators see the most critical reports first.
 
 ## Proof of Google AI Usage
-Attach screenshots in a /proof folder:
-
-### AI Proof
-- **Gemini Priority Scoring**: [proof/gemini-priority-scoring.png](./proof/gemini-priority-scoring.png)
-- **Vertex Resource Allocation**: [proof/vertex-resource-allocation.png](./proof/vertex-resource-allocation.png)
-- **AutoML Damage Assessment**: [proof/automl-damage-assessment.png](./proof/automl-damage-assessment.png)
+All AI logic is located in: `rescue-map-server/services/aiService.js`  
+Screenshots are available in the `/proof` folder.
 
 ## Screenshots
-### Screenshot1: Landing Page
-![Landing Page](C:\Users\GESY P MOHAN\Rescue-Me\Landing Page.jpeg)
+Placeholder for project screenshots:
+- **Screenshot 1**: Dashboard view with rescue feed.
+- **Screenshot 2**: SOS reporting portal.
 
-### Screenshot2: Dashboard
-![Dashboard](C:\Users\GESY P MOHAN\Rescue-Me\screenshot2.jpeg)
+## Demo Video
+Watch the demo of RescueMap in action here:  
+[Watch Demo](<Demo Video Link Here>) (Heading provided, link to be uploaded later)
 
-### Screenshot3: Volunteer
-![Volunteer](C:\Users\GESY P MOHAN\Rescue-Me\screenshot3.jpeg)
----
-*Note: Please ensure files are placed in the `/proof` and `/screenshots` directories to display correctly.*
+## Installation Steps
+### Clone the repository
+```bash
+git clone https://github.com/AnkitaSyam/Rescue-Me
+```
+
+### Go to project folder
+```bash
+cd Rescue-Me
+```
+
+### Install dependencies
+```bash
+# Server
+cd rescue-map-server
+npm install
+
+# Client
+cd ../rescue-map-client
+npm install
+```
+
+### Run the project
+```bash
+# Server
+cd rescue-map-server
+npm start
+
+# Client (in a new terminal)
+cd rescue-map-client
+npm run dev
+```
+
+

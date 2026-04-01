@@ -3,6 +3,8 @@ import { MapPin, Filter, Users, Clock, AlertCircle, CheckCircle2, ChevronRight, 
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+
 const CoordinatorDashboard = ({ socket }) => {
   const [victims, setVictims] = useState([]);
   const [filter, setFilter] = useState('All');
@@ -40,7 +42,7 @@ const CoordinatorDashboard = ({ socket }) => {
 
   const fetchVictims = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/victims');
+      const res = await axios.get(`${API_BASE_URL}/api/victims`);
       setVictims(res.data);
     } catch (err) {
       console.error('Failed to fetch victims:', err);
@@ -50,7 +52,7 @@ const CoordinatorDashboard = ({ socket }) => {
 
   const updateStatus = async (id, status) => {
     try {
-      await axios.patch(`/api/victims/${id}`, { status });
+      await axios.patch(`${API_BASE_URL}/api/victims/${id}`, { status });
     } catch (err) {
       console.error(err);
     }

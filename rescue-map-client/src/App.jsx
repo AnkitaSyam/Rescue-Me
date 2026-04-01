@@ -9,7 +9,8 @@ import EmergencyReport from './pages/EmergencyReport';
 import CoordinatorDashboard from './pages/CoordinatorDashboard';
 import VolunteerPortal from './pages/VolunteerPortal';
 
-const socket = io('http://localhost:5000');
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+const socket = io(API_BASE_URL);
 
 function App() {
   const [activeTab, setActiveTab] = useState('landing');
