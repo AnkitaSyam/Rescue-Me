@@ -23,6 +23,7 @@ const victimSchema = new mongoose.Schema({
   },
   priorityScore: { type: Number, default: 0 },
   assignedTeam: { type: String, default: null },
+  assignedVolunteer: { type: mongoose.Schema.Types.ObjectId, ref: 'Volunteer', default: null },
   createdAt: { type: Date, default: Date.now }
 });
 
