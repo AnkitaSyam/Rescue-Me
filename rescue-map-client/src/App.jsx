@@ -14,12 +14,16 @@ const socket = io(API_BASE_URL);
 
 function App() {
   const [activeTab, setActiveTab] = useState(() => {
-    return localStorage.getItem('rescuemap_activeTab') || 'landing';
+    const stored = localStorage.getItem('rescuemap_activeTab');
+    const validTabs = ['landing', 'report', 'dashboard', 'volunteer'];
+    return validTabs.includes(stored) ? stored : 'landing';
   });
 
   const handleTabChange = (tab) => {
-    setActiveTab(tab);
-    localStorage.setItem('rescuemap_activeTab', tab);
+    const validTabs = ['landing', 'report', 'dashboard', 'volunteer'];
+    const finalTab = validTabs.includes(tab) ? tab : 'landing';
+    setActiveTab(finalTab);
+    localStorage.setItem('rescuemap_activeTab', finalTab);
   };
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -160,7 +164,7 @@ function App() {
         <AnimatePresence mode="wait">
           {activeTab === 'landing' && (
             <motion.div key="landing" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
-              <LandingPage onStart={(tab) => handleTabChange(tab || 'report')} onDash={() => handleTabChange('dashboard')} />
+              <LandingPage onStart={() => handleTabChange('report')} onDash={() => handleTabChange('dashboard')} />
             </motion.div>
           )}
           {activeTab === 'report' && (
