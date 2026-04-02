@@ -10,14 +10,23 @@ dotenv.config();
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST", "PATCH"]
-  }
-});
 
-app.use(cors());
+// CORS configuration for production
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  'http://localhost:5173',
+  'http://localhost:3000'
+].filter(Boolean);
+
+const corsOptions = {
+  origin: allowedOrigins.length > 0 ? allowedOrigins : "*",
+  methods: ["GET", "POST", "PATCH"],
+  credentials: true
+};
+
+const io = new Server(server, { cors: corsOptions });
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use('/api', apiRoutes);
 
