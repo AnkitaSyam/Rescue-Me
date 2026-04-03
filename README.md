@@ -47,12 +47,12 @@ Watch the demo of RescueMap in action here:
 ## Installation Steps
 ### Clone the repository
 ```bash
-git clone https://github.com/AnkitaSyam/Rescue-Me
+git clone https://github.com/AnkitaSyam/Rescue-Map.git
 ```
 
 ### Go to project folder
 ```bash
-cd Rescue-Me
+cd Rescue-Map
 ```
 
 ### Install dependencies
